@@ -1,0 +1,13 @@
+Vagrant.configure("2") do |config|
+
+  config.vm.box = "ubuntu/trusty64"
+
+  config.vm.define "m1" do |m1|
+     m1.vm.hostname  = "firstserver"
+	 m1.vm.network "private_network", ip: "172.32.0.31"
+	 m1.vm.provider "virtualbox" do |vb|
+	   vb.name = "firstserver"
+	 end
+	end
+	config.vm.provision "shell" ,path: "docker.sh"
+  end
